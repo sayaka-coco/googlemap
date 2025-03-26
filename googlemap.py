@@ -2,8 +2,11 @@ import streamlit as st
 import requests
 import urllib.parse
 import os
+from dotenv import load_dotenv
 import datetime
 import re
+
+load_dotenv()
 
 # レイアウト調整（スライダーを左、検索ボックスを右）
 col1, col2, col3 = st.columns([1, 2, 2])  # 左 1: 右 2 の比率で分割
@@ -35,7 +38,7 @@ def bold_today_hours(text):
     return re.sub(f"({today_name}.*?)$", r"**\1**", text, flags=re.MULTILINE)
 
 # APIキーの取得（環境変数 or 直接設定）
-api_key = os.getenv("GOOGLE_PLACES_API_KEY", "API_KEY")
+api_key = os.getenv("API_KEY")
 
 # APIのURLとヘッダー情報
 url = "https://places.googleapis.com/v1/places:searchText"
